@@ -1,6 +1,6 @@
 # 📚VLR-Bench: Multilingual Benchmark Dataset for Vision-Language Retrieval Augmented Generation
-🏆 **Benchmark for Utility of Retrieved Documents**  
-📌 **COLING 2025**  
+📌 **Benchmark for Utility of Retrieved Documents**  
+🏆 **COLING 2025**  
 
 ## 📢 Authors  
 🟨 [Hyeonseok Lim](https://github.com/lhsstn/)  
