@@ -1,5 +1,18 @@
+import os
+import json
 import argparse
 import numpy as np
+import evaluate
+from transformers import AutoTokenizer
+
+'''
+The JSON file containing the inference results of the model to be evaluated must include the following values:
+
+'result': The model's inference output.
+'label': The output value from MLP-KTLim/VLR-Bench.
+'answer_keyword1': The keyword1 value from MLP-KTLim/VLR-Bench.
+'answer_keyword2': The keyword2 value from MLP-KTLim/VLR-Bench.
+'''
 
 def define_arguments():
     p = argparse.ArgumentParser()
@@ -14,11 +27,8 @@ def define_arguments():
 
 args = define_arguments()
 
-
-import json
 with open(args.inference_result,'r') as f:
     data=json.load(f)
-
 
 ### KMS - Keyword Matching Score ###
 win=0
@@ -34,8 +44,6 @@ for index in range(len(data)):
 
 
 ### ROUGE,BERTScore score ###
-import evaluate
-from transformers import AutoTokenizer
 rouge = evaluate.load('rouge')
 bleu = evaluate.load('bleu')
 bertscore = evaluate.load("bertscore")
@@ -44,16 +52,10 @@ pred=[data[i]['result'] for i in range(len(data))]
 label = [data[i]['label'] for i in range(len(data))]
 
 
-if args.inference_result in 'qwenvlchat':
+# This code is example using Qwen-VL-Chat model.
+if 'qwenvlchat' in args.inference_result:
     tokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen-VL-Chat')
 # This code loads the tokenizer based on model name and can be customized for your specific needs.
-
-elif args.inference_result in 'gpt4o':
-    import tiktoken
-    encoding_name = tiktoken.encoding_for_model("gpt-4o").name
-    encoding = tiktoken.get_encoding(encoding_name)
-    def tokenizer(x):
-        return encoding.encode(x)
 
 bert_score =bertscore.compute(predictions=pred, references=label,lang=args.language,model_type="bert-base-multilingual-cased")
 rouge_score = rouge.compute(predictions=pred, references=label,tokenizer=lambda x: tokenizer(x)['input_ids'])
@@ -63,7 +65,7 @@ bleu_score = bleu.compute(predictions=pred, references=label,tokenizer=lambda x:
 
 ######### SAVE ##########
 result = {
-    'KMS' : win/300,
+    'KMS' : win/len(data),
     'Bertscore-f1' : np.mean(bert_score['f1']),
     'ROUGE-1' : rouge_score['rouge1'],
     'ROUGE-2' : rouge_score['rouge2'],
@@ -73,6 +75,9 @@ result = {
     'model':args.inference_result.split('/')[-1].split('.')[0]
 }
 
-with open(args.save_path,'w') as f:
-    json.dump(result,f,indent=4,ensure_ascii=False)
+save_dir = os.path.dirname(args.save_path)
+os.makedirs(save_dir, exist_ok=True)  
+
+with open(args.save_path, 'w') as f:
+    json.dump(result, f, indent=4, ensure_ascii=False)
 ######### SAVE ##########
