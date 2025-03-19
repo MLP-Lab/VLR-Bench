@@ -1,4 +1,4 @@
-# VLR-Bench  
+# VLR-Bench(https://vlr-bench.github.io/)  
 **Multilingual Benchmark Dataset for Vision-Language Retrieval Augmented Generation**  
 🏆 **Benchmark for Utility of Retrieved Documents**  
 📌 **COLING 2025**  
