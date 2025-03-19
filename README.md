@@ -96,7 +96,7 @@ This work was supported by:
 
 1. Clone this repository:  
    ```sh
-   git clone https://github.com/your-repo/VLR-Bench.git
+   git clone https://github.com/MLP-Lab/VLR-Bench.git
    cd VLR-Bench
    ```
 2. Install dependencies:
