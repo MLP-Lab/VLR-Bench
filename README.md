@@ -106,6 +106,12 @@ This work was supported by:
    pip install -r requirements.txt
    ```
 3. Run eval
+The JSON file containing the inference results of the model to be evaluated must include the following values:
+
+'result': The model's inference output.
+'label': The output value from MLP-KTLim/VLR-Bench.
+'answer_keyword1': The keyword1 value from MLP-KTLim/VLR-Bench.
+'answer_keyword2': The keyword2 value from MLP-KTLim/VLR-Bench.
    ```
    sh eval.sh
    ```
