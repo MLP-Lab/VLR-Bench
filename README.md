@@ -105,17 +105,30 @@ This work was supported by:
    ```
    pip install -r requirements.txt
    ```
-3. Run eval
-**📌 JSON File Requirements for Model Evaluation  **
+3. Generate the model's inference results:
+   - The dataset can be loaded directly from Hugging Face.
+   - You can choose a specific language ('en', 'ko', or 'zh') from the language column and use the filtered dataset for inference.
+   - Use the following code to load the dataset and filter by language:
+   ```
+   from datasets import load_dataset
+
+   dataset = load_dataset("MLP-KTLim/VLR-Bench")
+   
+   # Select a specific language ('en', 'ko', or 'zh')
+   selected_language = "en"  # Change to 'ko' or 'zh' if needed
+   filtered_data = dataset.filter(lambda x: x["language"] == selected_language)
+   ```
+4. Prepare the inference result JSON file:     
 The JSON file containing the inference results of the model to be evaluated must include the following fields:  
 ```json
 {
   "result": "The model's inference output",
-  "label": "The output value from MLP-KTLim/VLR-Bench",
-  "answer_keyword1": "The keyword1 value from MLP-KTLim/VLR-Bench",
-  "answer_keyword2": "The keyword2 value from MLP-KTLim/VLR-Bench"
+  "label": "The output value from MLP-KTLim/VLR-Bench(filtered_data)",
+  "answer_keyword1": "The keyword1 value from MLP-KTLim/VLR-Bench(filtered_data)",
+  "answer_keyword2": "The keyword2 value from MLP-KTLim/VLR-Bench(filtered_data)"
 }
 ```
+5. Run eval:  
 ```
 sh eval.sh
 ```
