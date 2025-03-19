@@ -106,10 +106,8 @@ This work was supported by:
    pip install -r requirements.txt
    ```
 3. Run eval
-## 📌 JSON File Requirements for Model Evaluation  
-
+**📌 JSON File Requirements for Model Evaluation  **
 The JSON file containing the inference results of the model to be evaluated must include the following fields:  
-
 ```json
 {
   "result": "The model's inference output",
