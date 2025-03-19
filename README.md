@@ -4,18 +4,18 @@
 📌 **COLING 2025**  
 
 ## 📢 Authors  
-🔸 [Hyeonseok Lim](https://github.com/lhsstn/)  
-🔸 [Dongjae Shin](https://github.com/faizman31/)  
-🔸 [Seohyun Song](https://github.com/kreamsoup-SH)  
-🔸 [Inho Won](https://github.com/kotmul)  
-🔸 [Minjun Kim](https://github.com/mjkmain)  
-🔸 [Junghun Yuk](https://github.com/Swalbak)  
-🔸 [Haneol Jang](https://sites.google.com/view/aim-lab-hbnu/)  
-🔸 [KyungTae Lim](https://github.com/jujbob)  
+🟨 [Hyeonseok Lim](https://github.com/lhsstn/)  
+🟨 [Dongjae Shin](https://github.com/faizman31/)  
+🟨 [Seohyun Song](https://github.com/kreamsoup-SH)  
+🟨 [Inho Won](https://github.com/kotmul)  
+🟨 [Minjun Kim](https://github.com/mjkmain)  
+🟪 [Junghun Yuk](https://github.com/Swalbak)  
+🟪 [Haneol Jang](https://sites.google.com/view/aim-lab-hbnu/)  
+🟨 [KyungTae Lim](https://github.com/jujbob)  
 
 **Affiliations**:  
-▶ **Seoul National University of Science and Technology**  
-▶ **Hanbat National University**  
+🟨 **Seoul National University of Science and Technology**  
+🟪 **Hanbat National University**  
 
 ---
 
@@ -71,10 +71,11 @@
 ---
 
 ## 📜 BibTeX  
+```bibtex
 @article{lim2024vlr, title={VLR-Bench: Multilingual Benchmark Dataset for Vision-Language Retrieval Augmented Generation}, author={Lim, Hyeonseok and Shin, Dongjae and Song, Seohyun and Won, Inho and Kim, Minjun and Yuk, Junghun and Jang, Haneol and Lim, KyungTae}, journal={arXiv preprint arXiv:2412.10151}, year={2024} }
 
 @inproceedings{lim-etal-2025-vlr, title = "{VLR}-Bench: Multilingual Benchmark Dataset for Vision-Language Retrieval Augmented Generation", author = "Lim, Hyeonseok and Shin, Dongjae and Song, Seohyun and Won, Inho and Kim, Minjun and Yuk, Junghun and Jang, Haneol and Lim, KyungTae", booktitle = "Proceedings of the 31st International Conference on Computational Linguistics", month = jan, year = "2025", publisher = "Association for Computational Linguistics", url = "https://aclanthology.org/2025.coling-main.411/" }
-
+```
 
 ---
 
