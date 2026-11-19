@@ -1,6 +1,7 @@
 import os
 import json
 import argparse
+import re
 import numpy as np
 import evaluate
 from transformers import AutoTokenizer
@@ -33,10 +34,12 @@ with open(args.inference_result,'r') as f:
 ### KMS - Keyword Matching Score ###
 win=0
 for index in range(len(data)):
-    data[index]['result'] = data[index]['result'].lower().replace('<|eot_id|>','').strip()
+    result = data[index]['result']
+    result_lower = result.lower().replace('<|eot_id|>', '').strip()
+    data[index]['result'] = re.sub(r'<\|eot_id\|>', '', result, flags=re.IGNORECASE | re.ASCII).strip()
     main_key1 = data[index]['answer_keyword1'].lower()
     main_key2 = data[index]['answer_keyword2'].lower()
-    if main_key1 in data[index]['result'] and main_key2 in data[index]['result']:
+    if main_key1 in result_lower and main_key2 in result_lower:
         win+=1
     else:
         continue
