@@ -131,6 +131,18 @@ The JSON file containing the inference results of the model to be evaluated must
 ```
 sh eval.sh
 ```
+   - The tokenizer used by ROUGE and BLEU is chosen from the inference result filename (`llavallama3`, `qwenvlchat`, `gpt4o`). For other models, pass `--tokenizer <Hugging Face model id>` (or `tiktoken:<model>`) to `src/eval.py`, or add an entry to `TOKENIZERS` in `src/eval.py`.
+
+### ⚠️ Note on the evaluation protocol (casing)
+
+Since [PR #1](https://github.com/MLP-Lab/VLR-Bench/pull/1), `src/eval.py` keeps the original casing of model predictions when computing ROUGE, BLEU and BERTScore, so predictions and references are compared on equal terms. KMS is unchanged: it still compares lowercased predictions with lowercased keywords.
+
+The results in Table 1 of the paper were computed with the earlier protocol, where predictions were lowercased before ROUGE, BLEU and BERTScore while references kept their original casing. Because all three metrics are case-sensitive, this lowers their scores, mainly for English: on our archived predictions, the current protocol gives higher English scores by roughly 1.5–15 points (ROUGE/BLEU) and 1–4 points (BERTScore). Korean scores change very little, and KMS is identical. Model rankings were unchanged wherever we could recompute them.
+
+**Do not compare scores from the current evaluator directly with Table 1.** To reproduce the protocol used in the paper, add `--lowercase_pred`:
+```
+python src/eval.py --inference_result <file>.json --save_path <out>.json --language en --lowercase_pred
+```
 
    
 
